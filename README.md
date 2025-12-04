@@ -51,7 +51,7 @@ project-name/
 ### 2.1 Sursa datelor
 
 * **Origine:** Date sintetice generate programatic pentru simularea comportamentului termic al unui motor electric.
-* **Modul de achiziție:** ☐ Generare programatică
+* **Modul de achiziție:** ☒ Generare programatică
 * **Perioada / condițiile colectării:** Datele simulează funcționarea unui motor electric într-un interval de timp continuu (ex. o zi de funcționare), acoperind variații ale turației, curentului și tensiunii în regimuri diferite de operare.
 
 ### 2.2 Caracteristicile dataset-ului
@@ -60,17 +60,18 @@ a
 * **Număr de caracteristici (features):** 4 variabile de intrare + o variabilă țintă
     -Intrări: turație(rpm), curent(A), tensiune (V), timestamp
     -Ieșire: temperatura motorului (grade C)
-* **Tipuri de date:** x Numerice / x Temporale
-* **Format fișiere:** x CSV / ☐ TXT / ☐ JSON / ☐ PNG / ☐ Altele: [...]
+* **Tipuri de date:** ☒ Numerice / ☒ Temporale
+* **Format fișiere:** ☒ CSV / ☐ TXT / ☐ JSON / ☐ PNG / ☐ Altele: [...]
 
 ### 2.3 Descrierea fiecărei caracteristici
 
 | **Caracteristică** | **Tip** | **Unitate** | **Descriere** | **Domeniu valori** |
 |-------------------|---------|-------------|---------------|--------------------|
 | Curent | numeric | A | Curentul electric absorbit de motor. Indicator direct de sarcină | 0–150 |
-| Turație | numeric | rpm | Turația motorului. Corelată cu frecarea și ventilația | {A, B, C} |
-| Tensiune | numeric | V | [...] | 0–2.5 |
-| ... | ... | ... | ... | ... |
+| Turație | numeric | rpm | Turația motorului. Corelată cu frecarea și ventilația | 0-3000 |
+| Tensiune | numeric | V | Tensiunea de alimentare a motorului. Poate fi constantă sau variabilă. | 380-420 |
+| Timestamp | temporal | sec/s | Momentul eșantionării datelor (folosit pentru a capta dependența secvențială) | Timp continuu |
+| Temperatura | numeric | °C | Variabilă țintă. Temperatura carcasei sau înfășurării motorului | 20 -110 |
 
 **Fișier recomandat:**  `data/README.md`
 
@@ -80,14 +81,14 @@ a
 
 ### 3.1 Statistici descriptive aplicate
 
-* **Medie, mediană, deviație standard**
-* **Min–max și quartile**
-* **Distribuții pe caracteristici** (histograme)
-* **Identificarea outlierilor** (IQR / percentile)
+* **Medie, mediană, deviație standard**: Pentru a înțelege valoarea centrală și dispersia fiecărei variabile. Deviația standard mare înseamnă o dinamică ridicată.
+* **Min–max și quartile**: Pentru identificarea rapidă a intervalelor de operare.
+* **Distribuții pe caracteristici** (histograme): Pentru a vedea dacă datele sunt distribuite normal sau dacă sunt dezechilibrate (ex. turația este concentrată la ralanti sau la viteză nominală).
+* **Identificarea outlierilor** (IQR / percentile): Identificarea vârfurilor de curent sau a citirilor anormale de temperatură care pot indica erori sau regimuri de avarie.
 
 ### 3.2 Analiza calității datelor
 
-* **Detectarea valorilor lipsă** (% pe coloană)
+* **Detectarea valorilor lipsă** (% pe coloană): 
 * **Detectarea valorilor inconsistente sau eronate**
 * **Identificarea caracteristicilor redundante sau puternic corelate**
 
