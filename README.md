@@ -55,21 +55,21 @@ project-name/
 * **Perioada / condițiile colectării:** Datele simulează funcționarea unui motor electric într-un interval de timp continuu (ex. o zi de funcționare), acoperind variații ale turației, curentului și tensiunii în regimuri diferite de operare.
 
 ### 2.2 Caracteristicile dataset-ului
-
+a
 * **Număr total de observații:** 60
 * **Număr de caracteristici (features):** 4 variabile de intrare + o variabilă țintă
     -Intrări: turație(rpm), curent(A), tensiune (V), timestamp
     -Ieșire: temperatura motorului (grade C)
-* **Tipuri de date:** ☐ Numerice / ☐ Temporale
-* **Format fișiere:** ☐ CSV / ☐ TXT / ☐ JSON / ☐ PNG / ☐ Altele: [...]
+* **Tipuri de date:** x Numerice / x Temporale
+* **Format fișiere:** x CSV / ☐ TXT / ☐ JSON / ☐ PNG / ☐ Altele: [...]
 
 ### 2.3 Descrierea fiecărei caracteristici
 
 | **Caracteristică** | **Tip** | **Unitate** | **Descriere** | **Domeniu valori** |
 |-------------------|---------|-------------|---------------|--------------------|
-| curent | numeric | A | [...] | 0–150 |
-| turație | numeric | rpm | [...] | {A, B, C} |
-| feature_3 | numeric | m/s | [...] | 0–2.5 |
+| Curent | numeric | A | Curentul electric absorbit de motor. Indicator direct de sarcină | 0–150 |
+| Turație | numeric | rpm | Turația motorului. Corelată cu frecarea și ventilația | {A, B, C} |
+| Tensiune | numeric | V | [...] | 0–2.5 |
 | ... | ... | ... | ... | ... |
 
 **Fișier recomandat:**  `data/README.md`
