@@ -150,8 +150,7 @@ def main() -> None:
                     h1=h1,
                 )
 
-                # predicție RN: IMPORTANT — features trebuie să fie EXACT ca la train:
-                # în proiectul tău, features erau: [T_amb, omega, I, T_prev]
+            
                 X = np.array([[ctx.T_amb, ctx.omega, ctx.I, T_prev]], dtype=float)
                 Xs = scaler_X.transform(X)
                 y_pred_s = model.predict(Xs).reshape(-1, 1)
@@ -197,3 +196,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
