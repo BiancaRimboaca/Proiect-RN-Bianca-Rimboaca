@@ -1,0 +1,5 @@
+{
+    "test_accuracy_r2": 0.9970133884057444,
+    "mean_absolute_error_celsius": 0.43104127905452605,
+    "samples_count": 750
+}
