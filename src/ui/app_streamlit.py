@@ -11,28 +11,21 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-# ------------------------------------------------------------
-# Make sure project root is on PYTHONPATH so `import src...` works
-# File is: <root>/src/ui/app_streamlit.py  -> root = parents[2]
-# ------------------------------------------------------------
+
 ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.append(str(ROOT))
 
-from src.utils.thermal_model import step_temperature  # noqa: E402
+from src.utils.thermal_model import step_temperature  
 
-# -----------------------------
-# PAGE CONFIG
-# -----------------------------
+
 st.set_page_config(
     page_title="BLDC Thermal Monitor",
     layout="wide",
 
 )
 
-# -----------------------------
-# LOAD MODEL & SCALERS
-# -----------------------------
+
 @st.cache_resource
 def load_assets():
     model_path = ROOT / "outputs" / "models" / "mlp_regressor.joblib"
@@ -51,18 +44,15 @@ def load_assets():
 try:
     model, scalers = load_assets()
 
-    # Atenție: în proiectul tău scalers.joblib are cheile astea:
-    # dict_keys(['scaler_X', 'scaler_y', 'features', 'target', ...])
+  
     scaler_X = scalers["scaler_X"]
     scaler_y = scalers["scaler_y"]
-    FEATURES = scalers["features"]  # ex: ["dt","I","omega","T_amb","T_prev"] sau altă ordine
+    FEATURES = scalers["features"]  
 except Exception as e:
     st.error(f"Eroare la încărcarea modelului/scalerelor: {e}")
     st.stop()
 
-# -----------------------------
-# SESSION STATE INIT
-# -----------------------------
+
 if "history" not in st.session_state:
     st.session_state.history = pd.DataFrame(
         columns=["Timestamp", "T_real", "T_pred", "Error", "State", "I", "Omega", "T_amb"]
@@ -78,9 +68,7 @@ if "last_status" not in st.session_state:
     st.session_state.last_status = "IDLE"
 
 
-# -----------------------------
-# SIDEBAR CONTROLS
-# -----------------------------
+
 st.sidebar.header("🕹️ Control")
 
 col_btn1, col_btn2 = st.sidebar.columns(2)
@@ -157,9 +145,7 @@ if st.session_state.is_running:
         **thermal_params,
     )
 
-    # 2) RN INFERENCE (next-step prediction)
-    # IMPORTANT: build feature vector in the exact order used at training time
-    # FEATURES comes from scalers.joblib and is the single source of truth.
+    
     x_dict = {
         "T_amb": float(T_amb),
         "omega": float(omega_input),
@@ -297,3 +283,4 @@ with tab2:
 if st.session_state.is_running:
     time.sleep(float(sim_speed))
     st.rerun()
+
