@@ -1,0 +1,52 @@
+project:
+  name: "BLDC_Temperature_Prediction"
+
+paths:
+  data_raw: "data/raw/bldc_raw.csv"
+  data_processed: "data/processed/bldc_processed.csv"
+  train_csv: "data/train/train.csv"
+  val_csv: "data/validation/val.csv"
+  test_csv: "data/test/test.csv"
+  db_path: "db/local.db"
+
+dataset:
+  n_samples: 15000
+  dt: 0.1
+  seed: 42
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+
+signals:
+  t_amb_min: 15
+  t_amb_max: 35
+  omega_min: 0
+  omega_max: 3000
+  i_min: 0
+  i_max: 15
+  noise_std_temp: 0.3
+
+thermal_model:
+  C: 80.0
+  k_i2: 0.35
+  k_w: 0.002
+  h0: 0.18
+  h1: 0.00008
+
+
+nn:
+  hidden_layer_sizes: [32, 16]
+  activation: "relu"
+  alpha: 0.0001
+  max_iter: 300
+  random_state: 42
+
+simulation:
+  dt: 0.1
+  T0: 25.0
+
+state_machine:
+  sleep_s: 0.1
+  warning_temp: 70
+  shutdown_temp: 80
+  log_csv: outputs/logs/state_machine_log.csv
